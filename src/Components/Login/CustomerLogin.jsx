@@ -3,8 +3,8 @@ import axios from 'axios'
 import { signInWithPopup} from "firebase/auth";
 import {Link, useNavigate} from 'react-router-dom'
 import LeftContainer from "./LeftContainer";
-import { auth, provider } from "./firebase";
-import {setUser} from '../features/userSlice'
+import { auth, provider } from "../Config/firebase";
+import {setUser} from '../../features/userSlice'
 import {useDispatch} from'react-redux'
 
 const CustomerLogin = () => {
@@ -68,7 +68,7 @@ const CustomerLogin = () => {
     e.preventDefault();
     try{
       disable()
-      const res = await axios.post('/users/login', {email, password})
+      const res = await axios.post('users/login', {email, password})
       dispatch(setUser(res.data))
       navigate('/home')
       success()
@@ -105,6 +105,7 @@ const CustomerLogin = () => {
             placeholder="Password"
             onChange={(e)=>setPassword(e.target.value)}
             value={password}
+            autocomplete='disable'
             />
             <div className="w-2/3 flex items-center justify-between">
               <div className="flex items-center gap-1">

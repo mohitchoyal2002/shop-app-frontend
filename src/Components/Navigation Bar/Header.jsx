@@ -7,11 +7,11 @@ import {BsPinterest} from 'react-icons/bs'
 import {AiOutlineSearch} from 'react-icons/ai'
 import {BsBagDash} from 'react-icons/bs'
 import { useDispatch, useSelector } from "react-redux";
-import { Products } from "../features/CartSlice";
-import {User} from '../features/userSlice'
+import { Products } from "../../features/CartSlice";
+import {User} from '../../features/userSlice'
 import {RiArrowDropDownFill} from 'react-icons/ri'
 import ProfileMenu from "./ProfileMenu";
-import {profile, setProfile} from '../features/profileSlice'
+import {profile, setProfile} from '../../features/profileSlice'
 import Fade  from "react-reveal/Fade";
 
 
@@ -19,7 +19,13 @@ import Fade  from "react-reveal/Fade";
 const Header = () => {
 
   const cart = useSelector(Products);
-  const num = cart.length;
+  let num = 0
+  if(cart === null){
+    num = 0
+  }
+  else{
+     num = cart.length;
+  }
   const navigate = useNavigate();
 
   const user = useSelector(User);
